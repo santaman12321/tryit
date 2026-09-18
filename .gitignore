@@ -6,3 +6,4 @@ state/
 *.log
 .env
 reports/surge_study/events/
+reports/dl_daytrading/pred_*.parquet

@@ -125,10 +125,13 @@ def main() -> None:
         md.append(f"| {label} | {port['n_trades']} | {port['win'] * 100:.1f}% | {port['gross_mean'] * 100:+.3f}% | {port['net_mean'] * 100:+.3f}% | {port['total_return'] * 100:+.1f}% |")
 
     # ---- 다른 보유기간 (같은 예측으로 오버나잇/1일 보유 시)
-    md.append("\n## 같은 예측을 다른 청산에 적용 (테스트, 앙상블 상위 K)\n\n| 청산 | 거래 | 승률 | 총평균 | 비용후 평균 | 누적수익 |\n|---|---|---|---|---|---|")
-    for label, col in (("당일 종가(데이트레이딩)", "y_rod"), ("다음날 같은 시점(1일 보유)", "y_nd"), ("3세션 보유(t+2 종가)", "y_3d"), ("5세션 보유(t+4 종가)", "y_5d")):
+    md.append("\n## 같은 예측을 다른 청산에 적용 (테스트, 앙상블 상위 K)\n\n다일 보유의 누적은 자본을 보유일수(H)만큼의 코호트로 나눠 중첩 보유한다고 보고 일 수익률/H 로 근사(중첩 보정). "
+              "유니버스 평균 = 같은 기간 아무 종목이나 샀을 때의 평균(베이스라인).\n\n| 청산 | 거래 | 승률 | 총평균 | 비용후 평균 | 유니버스 평균 | 누적(중첩 보정) |\n|---|---|---|---|---|---|---|")
+    for label, col, H in (("당일 종가(데이트레이딩)", "y_rod", 1), ("다음날 같은 시점(1일 보유)", "y_nd", 1), ("3세션 보유(t+2 종가)", "y_3d", 3), ("5세션 보유(t+4 종가)", "y_5d", 5)):
         port = topk_portfolio(k_te, p_ens[te], col, args.k, cost_rt[te])
-        md.append(f"| {label} | {port['n_trades']} | {port['win'] * 100:.1f}% | {port['gross_mean'] * 100:+.3f}% | {port['net_mean'] * 100:+.3f}% | {port['total_return'] * 100:+.1f}% |")
+        cum = float((1 + port["daily"]["net"] / H).prod() - 1)
+        base = float(np.nanmean(k_te[col].to_numpy()))
+        md.append(f"| {label} | {port['n_trades']} | {port['win'] * 100:.1f}% | {port['gross_mean'] * 100:+.3f}% | {port['net_mean'] * 100:+.3f}% | {base * 100:+.3f}% | {cum * 100:+.1f}% |")
 
     # ---- 손익분기 비용
     ens_te = topk_portfolio(k_te, p_ens[te], "y_rod", args.k, np.zeros(te.sum()))

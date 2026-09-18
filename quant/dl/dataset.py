@@ -131,14 +131,19 @@ def build_dataset(decision: str = "h1", seq_len: int = 35, min_adv: float = 2e6,
     y_on = np.where(last_of_sym, np.nan, next_open / c[:, -1] - 1.0)
     prev_close = np.full(n, np.nan)
     prev_close[ok_daily] = stocks["close"].to_numpy()[date_idx[ok_daily] - 1, sym_idx[ok_daily]]
-    # 다일 보유 라벨: 결정가 -> t+2 / t+4 거래일 종가 (3/5 세션 보유)
-    dclose = stocks["close"].to_numpy()
+    # 다일 보유 라벨: 결정가 -> t+2 / t+4 거래일 마지막 봉 종가 (같은 시간봉 기준, 같은 심볼 안에서만)
+    sym_arr = key["symbol"].to_numpy()
     y_3d, y_5d = np.full(n, np.nan), np.full(n, np.nan)
     for arr_out, off in ((y_3d, 2), (y_5d, 4)):
-        okk = ok_daily & (date_idx + off < dclose.shape[0])
-        arr_out[okk] = dclose[date_idx[okk] + off, sym_idx[okk]] / dec_px[okk] - 1.0
+        fut = np.roll(c[:, -1], -off)
+        same = np.roll(sym_arr, -off) == sym_arr
+        same[-off:] = False
+        arr_out[same] = fut[same] / dec_px[same] - 1.0
     ctx = pd.DataFrame(index=key.index)
-    ctx["gap"] = np.clip(o[:, 0] / prev_close - 1.0, -0.5, 0.5)
+    # 갭은 같은 기준(시간봉)의 전일 마지막 봉 종가로 계산 — 시간봉은 배당 미조정이라 일봉 조정종가와 섞으면 배당주가 왜곡된다
+    prev_close_h = np.roll(c[:, -1], 1)
+    prev_close_h[sym_start] = np.nan
+    ctx["gap"] = np.clip(o[:, 0] / prev_close_h - 1.0, -0.5, 0.5)
     if decision == "h1":
         ctx["h1_ret"] = np.clip(c[:, 0] / o[:, 0] - 1.0, -0.5, 0.5)
         # 첫 1시간 거래량 / 직전 14일 첫 1시간 평균 거래량 (stocks in play)
