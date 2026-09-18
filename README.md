@@ -10,6 +10,11 @@
   2024-01~2026-09 국내 증권사 비용 기준 총 +135%(CAGR 37%), MDD −16%, 샤프 1.42, 세 해 각각 +32~34%. ETF 레그는 2005년부터 20년 검증(CAGR 22%, MDD −39%).
 - 단, 돌파 레그는 상위 10건 거래가 전체 손익(추세추종의 본질), 검증 기간이 강세장, 생존 편향 존재. 실행: `scripts/run_daily.py --strategy breakout --universe sp1500 ...` + `scripts/etf_signal.py`.
 
+**공개 자동매매 모델과의 비교** → [`reports/community_compare/README.md`](reports/community_compare/README.md), 출처 [`docs/community_models.md`](docs/community_models.md)
+- GitHub·Reddit·Composer·국내 유튜브/블로그의 모델 17종(HFEA, 9Sig, TQQQ FTLT, 200일선 스위칭, 듀얼모멘텀 GEM, 라오어 무한매수법·밸류리밸런싱, 변동성 돌파, SMA/MACD/볼린저/RSI/슈퍼트렌드/EMA 봇)을 규칙대로 재현해 같은 비용으로 비교했다.
+- 2024~2026 구간에서 우리 블렌드(+135%, MDD −16%)보다 총수익이 높은 것은 3배 레버리지에 상시 노출되는 모델(9Sig +190%, TQQQ FTLT +165~210%, 200일선→TQQQ +123%, SMA 50/200 골든크로스 종목 +238%)뿐이며 MDD가 −44~−73%다. 위험 대비로는 우리 블렌드가 앞선다.
+- 변동성 돌파(K=0.5)·무한매수법·RSI/볼린저 봇은 국내 수수료에서 손실 또는 저수익. FTLT 류의 장기 CAGR 46~64%는 2020년 한 해(+841~2273%)가 만든 숫자다.
+
 **급등주·데이트레이딩 검증 결과** → [`reports/surge_study/FINDINGS.md`](reports/surge_study/FINDINGS.md)
 - 공식 15종 + 커뮤니티 글 4종 + 전략 클래스 5종 = **24개 모델, 1,779개 설정을 같은 조건(수수료 편도 0.25%, 슬리피지, 유동성 제한)으로 경쟁**시켰다.
   학습(2023-11~2025-09)에서 고른 최적 설정을 검증(2025-09~2026-09)에 적용하면 24개 중 18개가 기대값 음수로 뒤집힌다.

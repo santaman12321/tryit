@@ -5,6 +5,7 @@ from .gap_day import GapDayStrategy
 from .lowturn import HighBreakoutStrategy, MLRankStrategy, PEADStrategy, XSMomentumStrategy
 from .pullback import PullbackStrategy
 from .surge import SurgeChaseStrategy, SurgePullbackStrategy
+from .technical import BollingerRSIStrategy, EMARSIStrategy, MACDStrategy, RSIStrategy, SMACrossStrategy, SupertrendStrategy
 
 STRATEGIES: dict[str, type[Strategy]] = {
     PullbackStrategy.name: PullbackStrategy,
@@ -17,6 +18,12 @@ STRATEGIES: dict[str, type[Strategy]] = {
     PEADStrategy.name: PEADStrategy,
     HighBreakoutStrategy.name: HighBreakoutStrategy,
     MLRankStrategy.name: MLRankStrategy,
+    SMACrossStrategy.name: SMACrossStrategy,
+    MACDStrategy.name: MACDStrategy,
+    BollingerRSIStrategy.name: BollingerRSIStrategy,
+    RSIStrategy.name: RSIStrategy,
+    SupertrendStrategy.name: SupertrendStrategy,
+    EMARSIStrategy.name: EMARSIStrategy,
 }
 
 
