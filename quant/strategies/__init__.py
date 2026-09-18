@@ -2,6 +2,7 @@ from .base import Signals, Strategy
 from .breakout import BreakoutStrategy
 from .formula import FormulaStrategy
 from .gap_day import GapDayStrategy
+from .lowturn import HighBreakoutStrategy, MLRankStrategy, PEADStrategy, XSMomentumStrategy
 from .pullback import PullbackStrategy
 from .surge import SurgeChaseStrategy, SurgePullbackStrategy
 
@@ -12,6 +13,10 @@ STRATEGIES: dict[str, type[Strategy]] = {
     SurgeChaseStrategy.name: SurgeChaseStrategy,
     SurgePullbackStrategy.name: SurgePullbackStrategy,
     FormulaStrategy.name: FormulaStrategy,
+    XSMomentumStrategy.name: XSMomentumStrategy,
+    PEADStrategy.name: PEADStrategy,
+    HighBreakoutStrategy.name: HighBreakoutStrategy,
+    MLRankStrategy.name: MLRankStrategy,
 }
 
 

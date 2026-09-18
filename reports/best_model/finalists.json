@@ -1,0 +1,6 @@
+[
+  {"name": "돌파_sp1500", "strategy": "breakout", "universe": "sp1500", "params": {"lookback": 20, "trail_atr_mult": 3.0, "min_dollar_volume": 50000000}, "max_positions": 10},
+  {"name": "횡단면모멘텀_sp1500", "strategy": "xs_momentum", "universe": "sp1500", "params": {"lookback": 126, "top_n": 20, "rank_by": "mom", "trail_atr_mult": null}, "max_positions": 20},
+  {"name": "ML랭커_all", "strategy": "ml_rank", "universe": "all", "params": {"top_n": 10, "rebalance_days": 21, "trail_atr_mult": 4.0, "use_regime_filter": false}, "max_positions": 10},
+  {"name": "ML랭커_sp1500", "strategy": "ml_rank", "universe": "sp1500", "params": {"top_n": 20, "rebalance_days": 21, "trail_atr_mult": 4.0, "use_regime_filter": false}, "max_positions": 20}
+]

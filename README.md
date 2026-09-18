@@ -5,7 +5,12 @@
 미국 전체 상장 보통주(약 5,000종목) 일봉 3년 + 1시간봉 2년 + 15분봉 60일로 검증한 뒤,
 살아남는 규칙만 자동매매(한국투자증권 Open API 어댑터, 기본 dry-run)로 넘기는 구조다.
 
-**결론 요약(2026-09-18 기준)** → [`reports/surge_study/FINDINGS.md`](reports/surge_study/FINDINGS.md)
+**최종 권고 모델** → [`reports/best_model/README.md`](reports/best_model/README.md)
+- 급등주·데이트레이딩 대신 **저회전 추세 모델 2개의 50/50 블렌드**가 가장 강했다: (1) S&P 1500 돌파 추세추종(20일 고가·거래량·정배열·레짐 필터·ATR 트레일, 10종목), (2) QQQ 변동성 타게팅 30% + 200일선(TQQQ 실행).
+  2024-01~2026-09 국내 증권사 비용 기준 총 +135%(CAGR 37%), MDD −16%, 샤프 1.42, 세 해 각각 +32~34%. ETF 레그는 2005년부터 20년 검증(CAGR 22%, MDD −39%).
+- 단, 돌파 레그는 상위 10건 거래가 전체 손익(추세추종의 본질), 검증 기간이 강세장, 생존 편향 존재. 실행: `scripts/run_daily.py --strategy breakout --universe sp1500 ...` + `scripts/etf_signal.py`.
+
+**급등주·데이트레이딩 검증 결과** → [`reports/surge_study/FINDINGS.md`](reports/surge_study/FINDINGS.md)
 - 공식 15종 + 커뮤니티 글 4종 + 전략 클래스 5종 = **24개 모델, 1,779개 설정을 같은 조건(수수료 편도 0.25%, 슬리피지, 유동성 제한)으로 경쟁**시켰다.
   학습(2023-11~2025-09)에서 고른 최적 설정을 검증(2025-09~2026-09)에 적용하면 24개 중 18개가 기대값 음수로 뒤집힌다.
 - 검증에서 살아남은 6개 모델·104개 설정도 강건성 점검에서 무너진다: 승률 60%대 설정(장대양봉+최대거래량 초소형주 / Warrior 스캐너 + 익절 15%)은
@@ -46,6 +51,10 @@ scripts/
 scripts/
   dl_train.py         모델 학습·평가 (--decision h1|open) → reports/dl_daytrading/README_{h1,open}.md
   dl_exits.py         ML 상위 K 종목에 장중 손절/익절/트레일 적용 비교
+  etf_strategies.py   ETF 장기(2005~) 추세·듀얼모멘텀·변동성타게팅 검증
+  ml_rank_train.py    20일 보유용 ML 랭커(walk-forward) → data/cache/ml_rank_pred.parquet
+  best_model_report.py / finalist_eval.py  수익 극대화 후보 리더보드·최종 비교·블렌드
+  etf_signal.py       ETF 레그 오늘의 목표 비중
 docs/surge_formulas.md  수집한 공식·팁 카탈로그(출처 포함)
 docs/daytrading_dl_research.md  데이트레이딩·딥러닝 문헌 조사와 설계 근거
 tests/                  백테스터 체결 규칙 단위 테스트
