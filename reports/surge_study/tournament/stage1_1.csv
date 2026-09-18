@@ -1,0 +1,71 @@
+screen,params,exclude_earnings,n,mean_net,win
+dryup_first_spike,"{""dry_frac"": 0.3, ""min_rvol"": 3, ""min_ret"": 0.03}",False,4174,-0.021258849314606417,0.366554863440345
+dryup_first_spike,"{""dry_frac"": 0.3, ""min_rvol"": 3, ""min_ret"": 0.03}",True,3927,-0.022219557057153574,0.35956200662083015
+dryup_first_spike,"{""dry_frac"": 0.3, ""min_rvol"": 3, ""min_ret"": 0.1}",False,2976,-0.021334883212280935,0.3602150537634409
+dryup_first_spike,"{""dry_frac"": 0.3, ""min_rvol"": 3, ""min_ret"": 0.1}",True,2793,-0.02251803609791038,0.3526673827425707
+dryup_first_spike,"{""dry_frac"": 0.3, ""min_rvol"": 5, ""min_ret"": 0.03}",False,2529,-0.026994098603272555,0.3487544483985765
+dryup_first_spike,"{""dry_frac"": 0.3, ""min_rvol"": 5, ""min_ret"": 0.03}",True,2390,-0.028465656626867755,0.3414225941422594
+dryup_first_spike,"{""dry_frac"": 0.3, ""min_rvol"": 5, ""min_ret"": 0.1}",False,1962,-0.02372328227335899,0.35423037716615696
+dryup_first_spike,"{""dry_frac"": 0.3, ""min_rvol"": 5, ""min_ret"": 0.1}",True,1849,-0.025245455515260192,0.3466738777717685
+dryup_first_spike,"{""dry_frac"": 0.5, ""min_rvol"": 3, ""min_ret"": 0.03}",False,7172,-0.016258609508328074,0.37897378694924705
+dryup_first_spike,"{""dry_frac"": 0.5, ""min_rvol"": 3, ""min_ret"": 0.03}",True,6312,-0.018696300937583555,0.36549429657794674
+dryup_first_spike,"{""dry_frac"": 0.5, ""min_rvol"": 3, ""min_ret"": 0.1}",False,4719,-0.016821413778923322,0.37613901250264886
+dryup_first_spike,"{""dry_frac"": 0.5, ""min_rvol"": 3, ""min_ret"": 0.1}",True,4089,-0.019923098571381765,0.35925654194179507
+dryup_first_spike,"{""dry_frac"": 0.5, ""min_rvol"": 5, ""min_ret"": 0.03}",False,3661,-0.021075153277660227,0.35400163889647634
+dryup_first_spike,"{""dry_frac"": 0.5, ""min_rvol"": 5, ""min_ret"": 0.03}",True,3263,-0.02487954385901124,0.33987128409439166
+dryup_first_spike,"{""dry_frac"": 0.5, ""min_rvol"": 5, ""min_ret"": 0.1}",False,2764,-0.01798429608306573,0.36360347322720693
+dryup_first_spike,"{""dry_frac"": 0.5, ""min_rvol"": 5, ""min_ret"": 0.1}",True,2416,-0.02227445329623147,0.34644039735099336
+gap_and_go,"{""min_gap"": 0.04, ""max_price"": 10}",False,8221,-0.01337025239613997,0.35920204354701374
+gap_and_go,"{""min_gap"": 0.04, ""max_price"": 10}",True,7259,-0.015610053347918025,0.34605317536850805
+gap_and_go,"{""min_gap"": 0.04, ""max_price"": 20}",False,13208,-0.01383779336305913,0.36220472440944884
+gap_and_go,"{""min_gap"": 0.04, ""max_price"": 20}",True,11465,-0.015679260394926876,0.3492368076755342
+gap_and_go,"{""min_gap"": 0.04, ""max_price"": 50}",False,18592,-0.013999536301466456,0.3641351118760757
+gap_and_go,"{""min_gap"": 0.04, ""max_price"": 50}",True,15997,-0.01543103060349524,0.35262861786584987
+gap_and_go,"{""min_gap"": 0.1, ""max_price"": 10}",False,1581,-0.01342429480969942,0.37318153067678683
+gap_and_go,"{""min_gap"": 0.1, ""max_price"": 10}",True,1255,-0.018817046171076827,0.3553784860557769
+gap_and_go,"{""min_gap"": 0.1, ""max_price"": 20}",False,2555,-0.010973568112235222,0.3859099804305284
+gap_and_go,"{""min_gap"": 0.1, ""max_price"": 20}",True,1922,-0.014157594663334513,0.3678459937565036
+gap_and_go,"{""min_gap"": 0.1, ""max_price"": 50}",False,3559,-0.014029246235887754,0.38353470075864005
+gap_and_go,"{""min_gap"": 0.1, ""max_price"": 50}",True,2609,-0.01712580429376819,0.36565733997700267
+gap_and_go,"{""min_gap"": 0.2, ""max_price"": 10}",False,446,0.002227277814679104,0.3744394618834081
+gap_and_go,"{""min_gap"": 0.2, ""max_price"": 10}",True,347,-0.009479006740372515,0.3314121037463977
+gap_and_go,"{""min_gap"": 0.2, ""max_price"": 20}",False,726,-0.0011054252124096903,0.3774104683195592
+gap_and_go,"{""min_gap"": 0.2, ""max_price"": 20}",True,530,-0.007571323669831726,0.33773584905660375
+gap_and_go,"{""min_gap"": 0.2, ""max_price"": 50}",False,1004,-0.010278030101178923,0.3695219123505976
+gap_and_go,"{""min_gap"": 0.2, ""max_price"": 50}",True,738,-0.015705165122813808,0.34146341463414637
+multiday_runner_day2,"{""day1_ret"": 0.2, ""day1_rvol"": 5}",False,1194,-0.005888610162012052,0.38107202680067004
+multiday_runner_day2,"{""day1_ret"": 0.2, ""day1_rvol"": 5}",True,1112,-0.005210351427947632,0.3776978417266187
+multiday_runner_day2,"{""day1_ret"": 0.2, ""day1_rvol"": 10}",False,856,-0.0061928886979224496,0.36565420560747663
+multiday_runner_day2,"{""day1_ret"": 0.2, ""day1_rvol"": 10}",True,817,-0.0055038320506412,0.36474908200734396
+multiday_runner_day2,"{""day1_ret"": 0.2, ""day1_rvol"": 20}",False,608,-0.008803994790225771,0.3536184210526316
+multiday_runner_day2,"{""day1_ret"": 0.2, ""day1_rvol"": 20}",True,585,-0.00783530155086355,0.35384615384615387
+multiday_runner_day2,"{""day1_ret"": 0.3, ""day1_rvol"": 5}",False,811,-0.0023539406694717694,0.36991368680641185
+multiday_runner_day2,"{""day1_ret"": 0.3, ""day1_rvol"": 5}",True,759,-0.0008917535830151393,0.3715415019762846
+multiday_runner_day2,"{""day1_ret"": 0.3, ""day1_rvol"": 10}",False,654,-9.016305786608422e-05,0.3746177370030581
+multiday_runner_day2,"{""day1_ret"": 0.3, ""day1_rvol"": 10}",True,620,0.0012152705281666938,0.3758064516129032
+multiday_runner_day2,"{""day1_ret"": 0.3, ""day1_rvol"": 20}",False,499,-0.00917521485824775,0.36072144288577157
+multiday_runner_day2,"{""day1_ret"": 0.3, ""day1_rvol"": 20}",True,476,-0.008002636111478018,0.36134453781512604
+multiday_runner_day2,"{""day1_ret"": 0.5, ""day1_rvol"": 5}",False,407,0.0016547321390429674,0.36363636363636365
+multiday_runner_day2,"{""day1_ret"": 0.5, ""day1_rvol"": 5}",True,392,0.002685311358301308,0.3647959183673469
+multiday_runner_day2,"{""day1_ret"": 0.5, ""day1_rvol"": 10}",False,374,-0.0031195412628255903,0.3609625668449198
+multiday_runner_day2,"{""day1_ret"": 0.5, ""day1_rvol"": 10}",True,359,-0.002193711310398742,0.362116991643454
+multiday_runner_day2,"{""day1_ret"": 0.5, ""day1_rvol"": 20}",False,315,-0.008199735701492149,0.3523809523809524
+multiday_runner_day2,"{""day1_ret"": 0.5, ""day1_rvol"": 20}",True,303,-0.007934372087983818,0.35313531353135313
+quiet_volume_spike,"{""max_abs_ret"": 0.02, ""min_rvol"": 3}",False,6924,-0.008292215536014206,0.38157134604274984
+quiet_volume_spike,"{""max_abs_ret"": 0.02, ""min_rvol"": 3}",True,6559,-0.008180725524722906,0.3810032017075774
+quiet_volume_spike,"{""max_abs_ret"": 0.02, ""min_rvol"": 5}",False,2763,-0.007907574051841983,0.3485342019543974
+quiet_volume_spike,"{""max_abs_ret"": 0.02, ""min_rvol"": 5}",True,2687,-0.007888039209118762,0.3461109043542985
+quiet_volume_spike,"{""max_abs_ret"": 0.02, ""min_rvol"": 10}",False,1084,-0.006126306072025018,0.30996309963099633
+quiet_volume_spike,"{""max_abs_ret"": 0.02, ""min_rvol"": 10}",True,1063,-0.004974857364575136,0.30761994355597366
+quiet_volume_spike,"{""max_abs_ret"": 0.03, ""min_rvol"": 3}",False,9230,-0.009590885365110196,0.38808234019501625
+quiet_volume_spike,"{""max_abs_ret"": 0.03, ""min_rvol"": 3}",True,8682,-0.009727285166683476,0.3864316977654918
+quiet_volume_spike,"{""max_abs_ret"": 0.03, ""min_rvol"": 5}",False,3677,-0.010571344115420244,0.35953222735926027
+quiet_volume_spike,"{""max_abs_ret"": 0.03, ""min_rvol"": 5}",True,3562,-0.010969712173025854,0.3565412689500281
+quiet_volume_spike,"{""max_abs_ret"": 0.03, ""min_rvol"": 10}",False,1427,-0.010925285277772366,0.32725998598458306
+quiet_volume_spike,"{""max_abs_ret"": 0.03, ""min_rvol"": 10}",True,1399,-0.009891335484307196,0.3259471050750536
+quiet_volume_spike,"{""max_abs_ret"": 0.05, ""min_rvol"": 3}",False,12561,-0.009767108968828304,0.3893798264469389
+quiet_volume_spike,"{""max_abs_ret"": 0.05, ""min_rvol"": 3}",True,11695,-0.009894963524263537,0.3882855921333903
+quiet_volume_spike,"{""max_abs_ret"": 0.05, ""min_rvol"": 5}",False,4973,-0.012098165441933999,0.3613512970038206
+quiet_volume_spike,"{""max_abs_ret"": 0.05, ""min_rvol"": 5}",True,4785,-0.012442758066138496,0.35841170323928945
+quiet_volume_spike,"{""max_abs_ret"": 0.05, ""min_rvol"": 10}",False,1950,-0.013548757096089332,0.33282051282051284
+quiet_volume_spike,"{""max_abs_ret"": 0.05, ""min_rvol"": 10}",True,1899,-0.012226954200155961,0.3312269615587151
