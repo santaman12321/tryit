@@ -257,3 +257,19 @@ def test_percentage_commission_korean_broker():
     fees = 2 * 0.0025 * shares * 10
     assert t["pnl"] == pytest.approx(-fees) and t["ret_pct"] == pytest.approx(-0.005)
     assert res.equity.iloc[-1] == pytest.approx(10_000 - fees)
+
+
+def test_target_buffer_and_target_at_close():
+    p = make_panels({"A": [10, 10, 10, 10, 10]}, spread=0.0)
+    p["high"].iloc[2, 0] = 11.6  # +16% 고가, 종가 10
+    c = p["close"]
+    sig = Signals(entry=bool_frame(c, {"A": [0]}), exit=bool_frame(c, {}), score=c * 0 + 1, target_pct=0.15)
+    res = run_backtest(p, sig, Fixed(sig, max_hold_days=3), cfg())
+    assert res.trades.iloc[0]["reason"] == "target" and res.trades.iloc[0]["exit_price"] == pytest.approx(11.5)
+    res2 = run_backtest(p, sig, Fixed(sig, max_hold_days=3), cfg(target_buffer=0.03))  # 11.5*1.03=11.845 > 11.6 -> 미체결
+    assert res2.trades.iloc[0]["reason"] == "time"
+    res3 = run_backtest(p, sig, Fixed(sig, max_hold_days=3), cfg(target_at_close=True))  # 종가 10 < 11.5 -> 미체결
+    assert res3.trades.iloc[0]["reason"] == "time"
+    p2 = make_panels({"A": [10, 10, 12, 12, 12]}, spread=0.0)  # 종가 12 >= 11.5 -> 목표가 11.5 에 체결
+    res4 = run_backtest(p2, sig, Fixed(sig, max_hold_days=3), cfg(target_at_close=True))
+    assert res4.trades.iloc[0]["reason"] == "target" and res4.trades.iloc[0]["exit_price"] == pytest.approx(11.5)

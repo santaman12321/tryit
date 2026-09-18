@@ -71,3 +71,99 @@ pullback_lowvol,"{""surge_pct"": 0.3, ""vol_frac"": 0.3, ""hold_pct"": 0.85}",Fa
 pullback_lowvol,"{""surge_pct"": 0.3, ""vol_frac"": 0.3, ""hold_pct"": 0.85}",True,2788,-0.0024683788641418347,0.39418938307030127
 pullback_lowvol,"{""surge_pct"": 0.3, ""vol_frac"": 0.3, ""hold_pct"": 0.9}",False,1856,-0.004402482147133113,0.39439655172413796
 pullback_lowvol,"{""surge_pct"": 0.3, ""vol_frac"": 0.3, ""hold_pct"": 0.9}",True,1832,-0.00438868302262793,0.39246724890829693
+ross_5pillars,"{""min_ret"": 0.05, ""min_rvol"": 2, ""max_price"": 10}",False,1985,-0.01297083969244243,0.3561712846347607
+ross_5pillars,"{""min_ret"": 0.05, ""min_rvol"": 2, ""max_price"": 10}",True,1880,-0.012604655829688097,0.35212765957446807
+ross_5pillars,"{""min_ret"": 0.05, ""min_rvol"": 2, ""max_price"": 20}",False,3353,-0.015629802354769642,0.3680286310766478
+ross_5pillars,"{""min_ret"": 0.05, ""min_rvol"": 2, ""max_price"": 20}",True,3136,-0.016510913625368103,0.3596938775510204
+ross_5pillars,"{""min_ret"": 0.05, ""min_rvol"": 2, ""max_price"": 50}",False,5038,-0.01654652776125855,0.36998809051210796
+ross_5pillars,"{""min_ret"": 0.05, ""min_rvol"": 2, ""max_price"": 50}",True,4608,-0.017584068581489767,0.3598090277777778
+ross_5pillars,"{""min_ret"": 0.05, ""min_rvol"": 5, ""max_price"": 10}",False,1284,-0.0070494014490061424,0.36682242990654207
+ross_5pillars,"{""min_ret"": 0.05, ""min_rvol"": 5, ""max_price"": 10}",True,1218,-0.006787474318046168,0.361247947454844
+ross_5pillars,"{""min_ret"": 0.05, ""min_rvol"": 5, ""max_price"": 20}",False,1932,-0.0146811533444974,0.36180124223602483
+ross_5pillars,"{""min_ret"": 0.05, ""min_rvol"": 5, ""max_price"": 20}",True,1826,-0.015802565189305583,0.3537787513691128
+ross_5pillars,"{""min_ret"": 0.05, ""min_rvol"": 5, ""max_price"": 50}",False,2643,-0.017584391724415113,0.35414301929625425
+ross_5pillars,"{""min_ret"": 0.05, ""min_rvol"": 5, ""max_price"": 50}",True,2466,-0.018910318238741525,0.3446877534468775
+ross_5pillars,"{""min_ret"": 0.05, ""min_rvol"": 10, ""max_price"": 10}",False,922,-0.003083539440224284,0.3600867678958785
+ross_5pillars,"{""min_ret"": 0.05, ""min_rvol"": 10, ""max_price"": 10}",True,882,-0.002294777464930333,0.35827664399092973
+ross_5pillars,"{""min_ret"": 0.05, ""min_rvol"": 10, ""max_price"": 20}",False,1307,-0.011509832826413949,0.35118592195868403
+ross_5pillars,"{""min_ret"": 0.05, ""min_rvol"": 10, ""max_price"": 20}",True,1251,-0.012036342338883324,0.34772182254196643
+ross_5pillars,"{""min_ret"": 0.05, ""min_rvol"": 10, ""max_price"": 50}",False,1713,-0.017707223693114737,0.3397548161120841
+ross_5pillars,"{""min_ret"": 0.05, ""min_rvol"": 10, ""max_price"": 50}",True,1643,-0.017615996970391054,0.3371880706025563
+ross_5pillars,"{""min_ret"": 0.1, ""min_rvol"": 2, ""max_price"": 10}",False,1517,-0.011343683870455422,0.35266974291364533
+ross_5pillars,"{""min_ret"": 0.1, ""min_rvol"": 2, ""max_price"": 10}",True,1443,-0.011114003452607858,0.3485793485793486
+ross_5pillars,"{""min_ret"": 0.1, ""min_rvol"": 2, ""max_price"": 20}",False,2414,-0.015331086949113022,0.3587406793703397
+ross_5pillars,"{""min_ret"": 0.1, ""min_rvol"": 2, ""max_price"": 20}",True,2261,-0.016435972691661086,0.3502874834144184
+ross_5pillars,"{""min_ret"": 0.1, ""min_rvol"": 2, ""max_price"": 50}",False,3428,-0.01709633514185388,0.36085180863477245
+ross_5pillars,"{""min_ret"": 0.1, ""min_rvol"": 2, ""max_price"": 50}",True,3147,-0.01802378809599452,0.3511280584683826
+ross_5pillars,"{""min_ret"": 0.1, ""min_rvol"": 5, ""max_price"": 10}",False,1058,-0.0031175460322578953,0.3629489603024575
+ross_5pillars,"{""min_ret"": 0.1, ""min_rvol"": 5, ""max_price"": 10}",True,1009,-0.0025829936425111172,0.3587710604558969
+ross_5pillars,"{""min_ret"": 0.1, ""min_rvol"": 5, ""max_price"": 20}",False,1581,-0.01102103225857277,0.3592662871600253
+ross_5pillars,"{""min_ret"": 0.1, ""min_rvol"": 5, ""max_price"": 20}",True,1498,-0.012309349769449736,0.35046728971962615
+ross_5pillars,"{""min_ret"": 0.1, ""min_rvol"": 5, ""max_price"": 50}",False,2138,-0.016292860484695446,0.3507951356407858
+ross_5pillars,"{""min_ret"": 0.1, ""min_rvol"": 5, ""max_price"": 50}",True,2000,-0.017307994489274822,0.3415
+ross_5pillars,"{""min_ret"": 0.1, ""min_rvol"": 10, ""max_price"": 10}",False,793,0.0017509977327260062,0.35687263556116017
+ross_5pillars,"{""min_ret"": 0.1, ""min_rvol"": 10, ""max_price"": 10}",True,761,0.0026578423950200966,0.354796320630749
+ross_5pillars,"{""min_ret"": 0.1, ""min_rvol"": 10, ""max_price"": 20}",False,1125,-0.006406695612078219,0.34933333333333333
+ross_5pillars,"{""min_ret"": 0.1, ""min_rvol"": 10, ""max_price"": 20}",True,1079,-0.0070511536554868255,0.3447636700648749
+ross_5pillars,"{""min_ret"": 0.1, ""min_rvol"": 10, ""max_price"": 50}",False,1471,-0.014425218234134899,0.33786539768864715
+ross_5pillars,"{""min_ret"": 0.1, ""min_rvol"": 10, ""max_price"": 50}",True,1412,-0.014515056156836396,0.3342776203966006
+ross_5pillars,"{""min_ret"": 0.2, ""min_rvol"": 2, ""max_price"": 10}",False,843,0.0002887241767418512,0.3487544483985765
+ross_5pillars,"{""min_ret"": 0.2, ""min_rvol"": 2, ""max_price"": 10}",True,807,0.0013652042085345788,0.34944237918215615
+ross_5pillars,"{""min_ret"": 0.2, ""min_rvol"": 2, ""max_price"": 20}",False,1318,-0.01408543079693961,0.34522003034901366
+ross_5pillars,"{""min_ret"": 0.2, ""min_rvol"": 2, ""max_price"": 20}",True,1247,-0.015072485983052875,0.3392141138732959
+ross_5pillars,"{""min_ret"": 0.2, ""min_rvol"": 2, ""max_price"": 50}",False,1789,-0.01874493990834451,0.3471212968138625
+ross_5pillars,"{""min_ret"": 0.2, ""min_rvol"": 2, ""max_price"": 50}",True,1679,-0.019611240254634444,0.34008338296605123
+ross_5pillars,"{""min_ret"": 0.2, ""min_rvol"": 5, ""max_price"": 10}",False,708,0.00764777578054329,0.3601694915254237
+ross_5pillars,"{""min_ret"": 0.2, ""min_rvol"": 5, ""max_price"": 10}",True,678,0.009303778939694324,0.36283185840707965
+ross_5pillars,"{""min_ret"": 0.2, ""min_rvol"": 5, ""max_price"": 20}",False,1060,-0.009057628243688193,0.3471698113207547
+ross_5pillars,"{""min_ret"": 0.2, ""min_rvol"": 5, ""max_price"": 20}",True,1009,-0.01011951180665359,0.3419226957383548
+ross_5pillars,"{""min_ret"": 0.2, ""min_rvol"": 5, ""max_price"": 50}",False,1425,-0.016858409383880762,0.34175438596491226
+ross_5pillars,"{""min_ret"": 0.2, ""min_rvol"": 5, ""max_price"": 50}",True,1348,-0.017381186539468567,0.336053412462908
+ross_5pillars,"{""min_ret"": 0.2, ""min_rvol"": 10, ""max_price"": 10}",False,584,0.013082860857967697,0.3613013698630137
+ross_5pillars,"{""min_ret"": 0.2, ""min_rvol"": 10, ""max_price"": 10}",True,560,0.01482976948755384,0.3625
+ross_5pillars,"{""min_ret"": 0.2, ""min_rvol"": 10, ""max_price"": 20}",False,842,-0.0021404515161206825,0.34323040380047504
+ross_5pillars,"{""min_ret"": 0.2, ""min_rvol"": 10, ""max_price"": 20}",True,808,-0.0027865460067449076,0.34034653465346537
+ross_5pillars,"{""min_ret"": 0.2, ""min_rvol"": 10, ""max_price"": 50}",False,1101,-0.011273750495974417,0.3369663941871026
+ross_5pillars,"{""min_ret"": 0.2, ""min_rvol"": 10, ""max_price"": 50}",True,1059,-0.01117750118919547,0.3352219074598678
+toss_pullback_after_green,"{""day2_max_ret"": -0.03, ""day2_vol_frac"": 0.3, ""base_adv"": 2000000.0}",False,297,0.0058738932854290014,0.3838383838383838
+toss_pullback_after_green,"{""day2_max_ret"": -0.03, ""day2_vol_frac"": 0.3, ""base_adv"": 2000000.0}",True,291,0.002913990334051296,0.3745704467353952
+toss_pullback_after_green,"{""day2_max_ret"": -0.03, ""day2_vol_frac"": 0.3, ""base_adv"": 10000000.0}",False,320,0.004975378683530699,0.384375
+toss_pullback_after_green,"{""day2_max_ret"": -0.03, ""day2_vol_frac"": 0.3, ""base_adv"": 10000000.0}",True,310,0.0027054235272115494,0.3774193548387097
+toss_pullback_after_green,"{""day2_max_ret"": -0.03, ""day2_vol_frac"": 0.5, ""base_adv"": 2000000.0}",False,400,0.009910702198377625,0.4025
+toss_pullback_after_green,"{""day2_max_ret"": -0.03, ""day2_vol_frac"": 0.5, ""base_adv"": 2000000.0}",True,390,0.007337948430396249,0.39487179487179486
+toss_pullback_after_green,"{""day2_max_ret"": -0.03, ""day2_vol_frac"": 0.5, ""base_adv"": 10000000.0}",False,449,0.011509921350915688,0.41648106904231624
+toss_pullback_after_green,"{""day2_max_ret"": -0.03, ""day2_vol_frac"": 0.5, ""base_adv"": 10000000.0}",True,430,0.009701576130583148,0.40930232558139534
+toss_pullback_after_green,"{""day2_max_ret"": -0.03, ""day2_vol_frac"": 0.7, ""base_adv"": 2000000.0}",False,447,0.012732694715359278,0.42058165548098436
+toss_pullback_after_green,"{""day2_max_ret"": -0.03, ""day2_vol_frac"": 0.7, ""base_adv"": 2000000.0}",True,432,0.010563612622415341,0.41203703703703703
+toss_pullback_after_green,"{""day2_max_ret"": -0.03, ""day2_vol_frac"": 0.7, ""base_adv"": 10000000.0}",False,509,0.013350258323373485,0.43222003929273084
+toss_pullback_after_green,"{""day2_max_ret"": -0.03, ""day2_vol_frac"": 0.7, ""base_adv"": 10000000.0}",True,478,0.012324766250178951,0.42677824267782427
+toss_pullback_after_green,"{""day2_max_ret"": -0.08, ""day2_vol_frac"": 0.3, ""base_adv"": 2000000.0}",False,151,0.015411164188504937,0.33774834437086093
+toss_pullback_after_green,"{""day2_max_ret"": -0.08, ""day2_vol_frac"": 0.3, ""base_adv"": 2000000.0}",True,147,0.011261459965763615,0.32653061224489793
+toss_pullback_after_green,"{""day2_max_ret"": -0.08, ""day2_vol_frac"": 0.3, ""base_adv"": 10000000.0}",False,157,0.014982381571557644,0.34394904458598724
+toss_pullback_after_green,"{""day2_max_ret"": -0.08, ""day2_vol_frac"": 0.3, ""base_adv"": 10000000.0}",True,152,0.011700603965950246,0.3355263157894737
+toss_pullback_after_green,"{""day2_max_ret"": -0.08, ""day2_vol_frac"": 0.5, ""base_adv"": 2000000.0}",False,194,0.02079267745900103,0.37628865979381443
+toss_pullback_after_green,"{""day2_max_ret"": -0.08, ""day2_vol_frac"": 0.5, ""base_adv"": 2000000.0}",True,189,0.016727942355560237,0.36507936507936506
+toss_pullback_after_green,"{""day2_max_ret"": -0.08, ""day2_vol_frac"": 0.5, ""base_adv"": 10000000.0}",False,208,0.02434402990954554,0.3894230769230769
+toss_pullback_after_green,"{""day2_max_ret"": -0.08, ""day2_vol_frac"": 0.5, ""base_adv"": 10000000.0}",True,202,0.021234004816470493,0.3811881188118812
+toss_pullback_after_green,"{""day2_max_ret"": -0.08, ""day2_vol_frac"": 0.7, ""base_adv"": 2000000.0}",False,215,0.021114381323729718,0.4046511627906977
+toss_pullback_after_green,"{""day2_max_ret"": -0.08, ""day2_vol_frac"": 0.7, ""base_adv"": 2000000.0}",True,205,0.017765076923760576,0.3902439024390244
+toss_pullback_after_green,"{""day2_max_ret"": -0.08, ""day2_vol_frac"": 0.7, ""base_adv"": 10000000.0}",False,234,0.024022373932705506,0.41452991452991456
+toss_pullback_after_green,"{""day2_max_ret"": -0.08, ""day2_vol_frac"": 0.7, ""base_adv"": 10000000.0}",True,219,0.021565656070553305,0.4018264840182648
+volume_3x_after_base,"{""min_rvol"": 3, ""max_range40"": 0.15}",False,618,-0.0019783360373042402,0.4174757281553398
+volume_3x_after_base,"{""min_rvol"": 3, ""max_range40"": 0.15}",True,392,-0.002245968223902927,0.4005102040816326
+volume_3x_after_base,"{""min_rvol"": 3, ""max_range40"": 0.25}",False,2066,-0.009992642969925618,0.41045498547918685
+volume_3x_after_base,"{""min_rvol"": 3, ""max_range40"": 0.25}",True,1394,-0.012926547955507385,0.38450502152080346
+volume_3x_after_base,"{""min_rvol"": 3, ""max_range40"": 0.4}",False,4255,-0.011909893774542773,0.399764982373678
+volume_3x_after_base,"{""min_rvol"": 3, ""max_range40"": 0.4}",True,3143,-0.01620985540989546,0.37321030862233534
+volume_3x_after_base,"{""min_rvol"": 5, ""max_range40"": 0.15}",False,286,0.0014536965835466598,0.4020979020979021
+volume_3x_after_base,"{""min_rvol"": 5, ""max_range40"": 0.15}",True,187,0.0005277994658523943,0.3850267379679144
+volume_3x_after_base,"{""min_rvol"": 5, ""max_range40"": 0.25}",False,984,-0.011060392336486346,0.40040650406504064
+volume_3x_after_base,"{""min_rvol"": 5, ""max_range40"": 0.25}",True,700,-0.015727116446058016,0.37142857142857144
+volume_3x_after_base,"{""min_rvol"": 5, ""max_range40"": 0.4}",False,2152,-0.013583479344563073,0.38382899628252787
+volume_3x_after_base,"{""min_rvol"": 5, ""max_range40"": 0.4}",True,1684,-0.02002696714955732,0.3527315914489311
+volume_3x_after_base,"{""min_rvol"": 10, ""max_range40"": 0.15}",False,97,-0.014137571314965496,0.41237113402061853
+volume_3x_after_base,"{""min_rvol"": 10, ""max_range40"": 0.15}",True,88,-0.015174771740451025,0.4090909090909091
+volume_3x_after_base,"{""min_rvol"": 10, ""max_range40"": 0.25}",False,405,-0.01664078902786288,0.4246913580246914
+volume_3x_after_base,"{""min_rvol"": 10, ""max_range40"": 0.25}",True,337,-0.02058229411433008,0.39762611275964393
+volume_3x_after_base,"{""min_rvol"": 10, ""max_range40"": 0.4}",False,1011,-0.020031572952513628,0.37289812067260136
+volume_3x_after_base,"{""min_rvol"": 10, ""max_range40"": 0.4}",True,882,-0.026254429607592562,0.35034013605442177

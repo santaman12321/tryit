@@ -6,10 +6,12 @@
 살아남는 규칙만 자동매매(한국투자증권 Open API 어댑터, 기본 dry-run)로 넘기는 구조다.
 
 **결론 요약(2026-09-18 기준)** → [`reports/surge_study/FINDINGS.md`](reports/surge_study/FINDINGS.md)
-- 15개 공식 × 진입/청산/손절 변형 수백 개를 학습(2023-11~2025-09)·검증(2025-09~2026-09) 두 구간에 돌렸을 때,
-  **비용(수수료 0.25%×2 + 슬리피지) 차감 후 두 구간 모두 기대값이 양(+)인 롱 규칙은 없었다.** 최고 승률도 45% 안팎.
-- 급등 다음날 고가의 58%(1시간봉)/35%(15분봉 첫 봉)가 개장 직후에 찍히고 66%는 시가보다 낮게 마감 → '추격 매수' 구조 자체가 불리하다.
-- 1달러 미만·초소형주 구간의 높은 '평균'은 상위 2% 로또(+2,000%대) 종목이 만든 착시(중앙값·절사평균은 음수, 생존 편향 포함).
+- 공식 15종 + 커뮤니티 글 4종 + 전략 클래스 5종 = **24개 모델, 1,779개 설정을 같은 조건(수수료 편도 0.25%, 슬리피지, 유동성 제한)으로 경쟁**시켰다.
+  학습(2023-11~2025-09)에서 고른 최적 설정을 검증(2025-09~2026-09)에 적용하면 24개 중 18개가 기대값 음수로 뒤집힌다.
+- 검증에서 살아남은 6개 모델·104개 설정도 강건성 점검에서 무너진다: 승률 60%대 설정(장대양봉+최대거래량 초소형주 / Warrior 스캐너 + 익절 15%)은
+  익절 체결 조건을 '고가+3%'로만 바꿔도 학습 수익이 -21~-61%, '종가 확인' 체결이면 -92~-97%. 눌림목 계열(+160%)은 검증 전반 +0.8%/후반 -41%, 상위 10건 손익 비중 249%(로또 거래 의존).
+- '이유 없는 급등'(실적 무관)은 실적 급등보다 더 나쁘고(3일 보유 -1.3~-1.8%), 회전율 100%↑ 급등은 3일 중앙값 -7~-9%. 급등 다음날 고가의 58%(1시간봉)/35%(15분 첫 봉)는 개장 직후.
+- 장중 진입×청산×손절 조합 300개(1시간봉·15분봉) 중 두 기간 모두 양(+)은 0개. **결론: 국내 계좌로 미국 동전주·소형주 급등주를 매수하는 자동매매는 검증을 통과한 설정이 없다.**
 
 ## 구조
 
@@ -34,6 +36,9 @@ scripts/
   intraday_study.py   장중 진입×청산×손절 조합 검증 → reports/surge_study/intraday_{1h,15m}/
   run_backtest.py     포트폴리오 백테스트 → reports/<기간>/
   sensitivity.py      파라미터 격자(여러 기간 동시)
+  tournament.py       모델 토너먼트(모든 모델 파라미터 탐색 → 학습 선택 → 검증 평가, 샤딩 지원) → reports/surge_study/tournament/
+  robustness.py       생존 설정 강건성 점검(검증 전/후반, 익절 체결 가정 변형, 이상치 의존도)
+  make_findings.py    최종 보고서 생성 → reports/surge_study/FINDINGS.md
   run_daily.py        매일 장 마감 후 신호→주문 계획/제출
 docs/surge_formulas.md  수집한 공식·팁 카탈로그(출처 포함)
 tests/                  백테스터 체결 규칙 단위 테스트
@@ -55,14 +60,20 @@ python scripts/event_study.py --train 2023-11-01:2025-09-17 --test 2025-09-18:20
 python scripts/intraday_study.py --interval 1h  --out reports/surge_study/intraday_1h
 python scripts/intraday_study.py --interval 15m --split 2026-08-06 --out reports/surge_study/intraday_15m
 
-# 3) 포트폴리오 백테스트 / 격자
+# 3) 모델 토너먼트 + 강건성 + 보고서
+python scripts/tournament.py --shard 0/3 --out reports/surge_study/tournament   # 0/3,1/3,2/3 병렬
+python scripts/tournament.py --merge --out reports/surge_study/tournament
+python scripts/robustness.py --top 6 --out reports/surge_study/tournament
+python scripts/make_findings.py
+
+# 4) 포트폴리오 백테스트 / 격자
 python scripts/run_backtest.py --strategy all --universe all --start 2025-09-18 --end 2026-09-17
 python scripts/run_backtest.py --strategy formula --param screen=ross_5pillars --param stop_pct=0.05 --param max_hold_days=3
 python scripts/sensitivity.py --strategy formula --base '{"screen":"pullback_lowvol"}' \
    --grid '{"stop_pct":[0.05,0.1],"max_hold_days":[3,5]}' --window train=2023-11-01:2025-09-17 --window test=2025-09-18:2026-09-17 \
    --out reports/surge_study/grid_pullback_lowvol
 
-# 4) 자동매매 (기본은 계획만 출력; KIS 모의투자로 먼저)
+# 5) 자동매매 (기본은 계획만 출력; KIS 모의투자로 먼저)
 python scripts/run_daily.py --strategy breakout --universe sp1500 --broker dryrun
 KIS_APP_KEY=... KIS_APP_SECRET=... KIS_ACCOUNT=... KIS_PAPER=1 python scripts/run_daily.py --strategy breakout --broker kis --live
 ```

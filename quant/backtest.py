@@ -40,6 +40,8 @@ class BacktestConfig:
     risk_per_trade: float = 0.01
     max_adv_pct: float | None = 0.01  # 포지션 <= 20일 평균 거래대금 * 이 비율 (유동성 현실화). None=제한 없음
     borrow_rate_annual: float = 0.0  # 공매도 대차비용 (연율, 예: 1.0 = 100%/년). 보유일수 x 일할로 차감
+    target_buffer: float = 0.0  # 익절 체결 인정 조건: 고가 >= 목표가 * (1 + buffer). 일봉 고가 오류 틱/부분체결 대비 보수적 설정용
+    target_at_close: bool = False  # True 면 장중 고가 대신 '종가 >= 목표가' 일 때만 목표가에 익절 (가장 보수적)
     start: str | None = None
     end: str | None = None
 
@@ -232,7 +234,7 @@ def run_backtest(panels: dict[str, pd.DataFrame], signals: Signals, strategy: St
                 if pos.stop is not None and l[col] <= pos.stop:
                     fill = min(o[col], pos.stop) if not math.isnan(o[col]) else pos.stop
                     close_position(pos, fill, i, "stop")
-                elif pos.target is not None and h[col] >= pos.target:
+                elif pos.target is not None and not config.target_at_close and h[col] >= pos.target * (1.0 + config.target_buffer):
                     fill = max(o[col], pos.target) if not math.isnan(o[col]) else pos.target
                     close_position(pos, fill, i, "target")
             else:  # 숏: 고가가 손절가 이상이면 손절, 저가가 목표가 이하면 익절
@@ -256,6 +258,10 @@ def run_backtest(panels: dict[str, pd.DataFrame], signals: Signals, strategy: St
                 open_position(col, sc, math.nan, adv[i, col] if adv is not None else math.nan, c[col], i)
             n_pos_today = len(positions)
         else:
+            if config.target_at_close:
+                for col, pos in list(positions.items()):
+                    if pos.direction == 1 and pos.target is not None and not math.isnan(c[col]) and c[col] >= pos.target:
+                        close_position(pos, pos.target, i, "target")
             for col, pos in positions.items():
                 pos.hold_days += 1
                 cc = c[col]
