@@ -40,7 +40,12 @@ scripts/
   robustness.py       생존 설정 강건성 점검(검증 전/후반, 익절 체결 가정 변형, 이상치 의존도)
   make_findings.py    최종 보고서 생성 → reports/surge_study/FINDINGS.md
   run_daily.py        매일 장 마감 후 신호→주문 계획/제출
+  dl/               딥러닝/ML 데이트레이딩: dataset.py(1시간봉+일봉 맥락 샘플), models.py(LightGBM·GRU·규칙 베이스라인·평가)
+scripts/
+  dl_train.py         모델 학습·평가 (--decision h1|open) → reports/dl_daytrading/README_{h1,open}.md
+  dl_exits.py         ML 상위 K 종목에 장중 손절/익절/트레일 적용 비교
 docs/surge_formulas.md  수집한 공식·팁 카탈로그(출처 포함)
+docs/daytrading_dl_research.md  데이트레이딩·딥러닝 문헌 조사와 설계 근거
 tests/                  백테스터 체결 규칙 단위 테스트
 ```
 
@@ -73,7 +78,13 @@ python scripts/sensitivity.py --strategy formula --base '{"screen":"pullback_low
    --grid '{"stop_pct":[0.05,0.1],"max_hold_days":[3,5]}' --window train=2023-11-01:2025-09-17 --window test=2025-09-18:2026-09-17 \
    --out reports/surge_study/grid_pullback_lowvol
 
-# 5) 자동매매 (기본은 계획만 출력; KIS 모의투자로 먼저)
+# 5) 딥러닝/ML 데이트레이딩 (대형주 포함 전 종목, 1시간봉)
+python scripts/fetch_intraday.py --symbols symbols.txt --interval 1h --merge
+python scripts/dl_train.py --decision h1 --out reports/dl_daytrading      # 10:30 결정 → 종가 청산
+python scripts/dl_train.py --decision open --out reports/dl_daytrading    # 시가 결정 → 종가 청산
+python scripts/dl_exits.py --decision h1 --out reports/dl_daytrading
+
+# 6) 자동매매 (기본은 계획만 출력; KIS 모의투자로 먼저)
 python scripts/run_daily.py --strategy breakout --universe sp1500 --broker dryrun
 KIS_APP_KEY=... KIS_APP_SECRET=... KIS_ACCOUNT=... KIS_PAPER=1 python scripts/run_daily.py --strategy breakout --broker kis --live
 ```
