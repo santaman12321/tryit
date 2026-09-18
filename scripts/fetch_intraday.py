@@ -58,12 +58,21 @@ def main() -> None:
     p.add_argument("--symbols", required=True)
     p.add_argument("--interval", default="1h", help="1h (최근 730일) | 15m/5m (최근 60일) | 1m (최근 7일)")
     p.add_argument("--period", default=None, help="기본: 1h=730d, 15m/5m/30m=60d, 1m=7d")
+    p.add_argument("--merge", action="store_true", help="기존 파일에 없는 심볼만 받아서 합친다")
     args = p.parse_args()
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
     period = args.period or {"1h": "730d", "1m": "7d"}.get(args.interval, "60d")
     symbols = [s.strip() for s in Path(args.symbols).read_text().split() if s.strip()]
-    df = download_bars(symbols, args.interval, period)
     out = data.CACHE_DIR / f"intraday_{args.interval}.parquet"
+    existing = None
+    if args.merge and out.exists():
+        existing = pd.read_parquet(out)
+        have = set(existing["symbol"].unique())
+        symbols = [s for s in symbols if s not in have]
+        logging.info("%d symbols already cached, %d to download", len(have), len(symbols))
+    df = download_bars(symbols, args.interval, period) if symbols else pd.DataFrame(columns=["datetime", "symbol", *data.FIELDS])
+    if existing is not None:
+        df = pd.concat([existing, df], ignore_index=True).drop_duplicates(["symbol", "datetime"]).sort_values(["symbol", "datetime"]).reset_index(drop=True)
     out.parent.mkdir(parents=True, exist_ok=True)
     df.to_parquet(out, index=False)
     logging.info("saved %d rows, %d symbols, %s ~ %s -> %s", len(df), df["symbol"].nunique(), df["datetime"].min(), df["datetime"].max(), out)
