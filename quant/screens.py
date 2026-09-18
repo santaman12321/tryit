@@ -89,13 +89,12 @@ def earnings_mask(panels: dict[str, pd.DataFrame], days_after: int = 1) -> pd.Da
     e = pd.read_parquet(f)
     e["date"] = pd.to_datetime(e["date"])
     e = e[e["symbol"].isin(c.columns)]
-    m = pd.DataFrame(False, index=c.index, columns=c.columns)
     pos = c.index.searchsorted(e["date"].to_numpy())
-    cols = m.columns.get_indexer(e["symbol"])
-    arr = m.to_numpy()
+    cols = c.columns.get_indexer(e["symbol"])
+    arr = np.zeros(c.shape, dtype=bool)
     for k, j in zip(pos, cols):
         for d in range(days_after + 1):
-            if 0 <= k + d < len(c.index):
+            if 0 <= k + d < len(c.index) and j >= 0:
                 arr[k + d, j] = True
     m = pd.DataFrame(arr, index=c.index, columns=c.columns)
     _EARN_CACHE.clear()
