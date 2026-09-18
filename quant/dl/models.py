@@ -37,11 +37,11 @@ SEQ_SUMMARY_NAMES = [f"lr_m{i}" for i in range(7, 0, -1)] + ["lr_sum7", "lr_sum3
 def train_lgbm(X_tr, y_tr, X_va, y_va, feature_names, seed=0):
     import lightgbm as lgb
 
-    params = dict(objective="regression", learning_rate=0.05, num_leaves=63, min_data_in_leaf=200, feature_fraction=0.8, bagging_fraction=0.8,
+    params = dict(objective="regression", learning_rate=0.02, num_leaves=63, min_data_in_leaf=500, feature_fraction=0.8, bagging_fraction=0.8,
                   bagging_freq=1, lambda_l2=1.0, verbose=-1, seed=seed, num_threads=4)
     dtr = lgb.Dataset(X_tr, y_tr, feature_name=feature_names)
     dva = lgb.Dataset(X_va, y_va, reference=dtr)
-    model = lgb.train(params, dtr, num_boost_round=1500, valid_sets=[dva], callbacks=[lgb.early_stopping(100, verbose=False), lgb.log_evaluation(0)])
+    model = lgb.train(params, dtr, num_boost_round=2000, valid_sets=[dva], callbacks=[lgb.early_stopping(300, verbose=False), lgb.log_evaluation(0)])
     log.info("lgbm best_iteration=%d", model.best_iteration)
     return model
 

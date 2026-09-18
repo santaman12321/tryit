@@ -102,6 +102,16 @@ def main() -> None:
             if split_name == "테스트":
                 port_curves[name] = port["daily"]
     pd.DataFrame(rows).to_csv(out / f"results_{args.decision}.csv", index=False)
+    pred_df = key[["symbol", "date", "dec_px", "y_rod", "y_nd", "y_on", "y_3d", "y_5d", "log_mcap"]].copy()
+    pred_df["p_lgb"], pred_df["p_gru"], pred_df["p_ens"], pred_df["split"] = p_lgb, p_gru, p_ens, np.where(te, "test", np.where(va, "val", "train"))
+    pred_df.to_parquet(out / f"pred_{args.decision}.parquet", index=False)
+
+    # ---- 상위 N 스윕 (테스트, 앙상블): 집중할수록 거래당 총수익이 비용을 넘는가
+    md.append(f"\n## 상위 N 스윕 (테스트, 앙상블, 당일 종가 청산)\n\n| N | 거래 | 승률 | 총평균/거래 | 비용후 평균 | 누적(비용후) | 손익분기 왕복비용 |\n|---|---|---|---|---|---|---|")
+    k_te = key[te].reset_index(drop=True)
+    for n_top in (1, 3, 5, 10, 20, 50):
+        port = topk_portfolio(k_te, p_ens[te], "y_rod", n_top, cost_rt[te])
+        md.append(f"| {n_top} | {port['n_trades']} | {port['win'] * 100:.1f}% | {port['gross_mean'] * 100:+.3f}% | {port['net_mean'] * 100:+.3f}% | {port['total_return'] * 100:+.1f}% | {port['gross_mean'] * 100:.2f}% |")
 
     # ---- 시총 구간별 (테스트, LightGBM/앙상블)
     md.append("\n## 시총 구간별 (테스트, 앙상블 상위 K)\n\n| 시총 구간 | 거래 | 승률 | 총평균 | 비용후 평균 | 누적수익 |\n|---|---|---|---|---|---|")
@@ -116,7 +126,7 @@ def main() -> None:
 
     # ---- 다른 보유기간 (같은 예측으로 오버나잇/1일 보유 시)
     md.append("\n## 같은 예측을 다른 청산에 적용 (테스트, 앙상블 상위 K)\n\n| 청산 | 거래 | 승률 | 총평균 | 비용후 평균 | 누적수익 |\n|---|---|---|---|---|---|")
-    for label, col in (("당일 종가(데이트레이딩)", "y_rod"), ("다음날 같은 시점(1일 보유)", "y_nd")):
+    for label, col in (("당일 종가(데이트레이딩)", "y_rod"), ("다음날 같은 시점(1일 보유)", "y_nd"), ("3세션 보유(t+2 종가)", "y_3d"), ("5세션 보유(t+4 종가)", "y_5d")):
         port = topk_portfolio(k_te, p_ens[te], col, args.k, cost_rt[te])
         md.append(f"| {label} | {port['n_trades']} | {port['win'] * 100:.1f}% | {port['gross_mean'] * 100:+.3f}% | {port['net_mean'] * 100:+.3f}% | {port['total_return'] * 100:+.1f}% |")
 

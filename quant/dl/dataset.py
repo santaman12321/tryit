@@ -131,6 +131,12 @@ def build_dataset(decision: str = "h1", seq_len: int = 35, min_adv: float = 2e6,
     y_on = np.where(last_of_sym, np.nan, next_open / c[:, -1] - 1.0)
     prev_close = np.full(n, np.nan)
     prev_close[ok_daily] = stocks["close"].to_numpy()[date_idx[ok_daily] - 1, sym_idx[ok_daily]]
+    # 다일 보유 라벨: 결정가 -> t+2 / t+4 거래일 종가 (3/5 세션 보유)
+    dclose = stocks["close"].to_numpy()
+    y_3d, y_5d = np.full(n, np.nan), np.full(n, np.nan)
+    for arr_out, off in ((y_3d, 2), (y_5d, 4)):
+        okk = ok_daily & (date_idx + off < dclose.shape[0])
+        arr_out[okk] = dclose[date_idx[okk] + off, sym_idx[okk]] / dec_px[okk] - 1.0
     ctx = pd.DataFrame(index=key.index)
     ctx["gap"] = np.clip(o[:, 0] / prev_close - 1.0, -0.5, 0.5)
     if decision == "h1":
@@ -169,6 +175,7 @@ def build_dataset(decision: str = "h1", seq_len: int = 35, min_adv: float = 2e6,
     ctx["spy_h1"] = np.nan_to_num(spy_h1, nan=0.0) if decision == "h1" else 0.0
     # 라벨 클리핑: ±50% 밖은 데이터 오류(역분할/오류 틱)로 보고 잘라낸다
     key["y_rod"], key["y_nd"], key["y_on"] = np.clip(y_rod, -0.5, 0.5), np.clip(y_nd, -0.5, 0.5), np.clip(y_on, -0.5, 0.5)
+    key["y_3d"], key["y_5d"] = np.clip(y_3d, -0.8, 1.0), np.clip(y_5d, -0.8, 1.0)
     key["dec_px"] = dec_px
     key["adv"] = np.exp(ctx["log_adv"])
     for cname in CTX_FEATS:

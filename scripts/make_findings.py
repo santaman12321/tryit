@@ -164,6 +164,26 @@ def sec_robustness() -> str:
     return "\n".join(lines) + "\n\n셀 = 수익률 (승률, 기대/거래). '버퍼3%' = 고가가 목표가보다 3% 더 높아야 익절 체결 인정, '종가확인' = 종가 ≥ 목표가일 때만 체결. 상위10 비중 = 상위 10건 손익 / 전체 손익(100% 초과 = 나머지 거래 합이 손실).\n"
 
 
+def sec_dl() -> str:
+    """딥러닝/ML 데이트레이딩 결과 요약 (reports/dl_daytrading)."""
+    base = Path("reports/dl_daytrading")
+    out = []
+    for dec, label in (("open", "시가 결정 → 종가 청산"), ("h1", "10:30 결정 → 종가 청산")):
+        f = base / f"results_{dec}.csv"
+        if not f.exists():
+            continue
+        r = pd.read_csv(f)
+        t = r[r.split == "테스트"].set_index("model")
+        out.append(f"### {label}\n\n| 모델 | IC(t) | 상위10 승률 | 총평균/거래 | 비용후/거래 | 누적(비용후) |\n|---|---|---|---|---|---|")
+        for m in t.index:
+            x = t.loc[m]
+            out.append(f"| {m} | {x.ic_mean:+.3f} ({x.ic_t:+.1f}) | {x.win * 100:.1f}% | {x.gross_mean * 100:+.3f}% | {x.net_mean * 100:+.3f}% | {x.total_return * 100:+.1f}% |")
+        out.append("")
+    if not out:
+        return "(딥러닝 결과 없음)"
+    return "\n".join(out) + "상세(상위 N 스윕, 시총 구간, 다일 보유, 장중 청산 규칙): `reports/dl_daytrading/README_open.md`, `README_h1.md`, `exits_*.md`.\n"
+
+
 def sec_sp1500() -> str:
     lines = ["| 전략 | 기간 | 거래 | 승률 | 수익률 | MDD | PF | SPY |", "|---|---|---|---|---|---|---|---|"]
     for d in sorted(glob.glob("reports/sp1500_*")):
@@ -242,11 +262,18 @@ def main() -> None:
 
 봉별 고가/저가 분포와 시간대별 수익률은 `intraday_1h/README.md`, `intraday_15m/README.md` 참고.
 
-## 7. 비교: S&P 1500 유동주 전략 (같은 비용)
+## 7. 딥러닝/ML 데이트레이딩 (대형주 포함 4,259종목, 1시간봉, 문헌 설계 차용)
+
+문헌(Fischer & Krauss 2018, Ghosh et al. 2021, Gao et al. 2018, Zarattini et al. 2024, Kaggle 상위 솔루션, López de Prado)의 설계를 그대로 차용해
+횡단면 순위 목표값 + LightGBM/GRU 앙상블을 학습(~2025-06)·검증(2025-07~09)·테스트(2025-10~2026-09)로 나눠 평가했다. 조사 내용: `docs/daytrading_dl_research.md`.
+
+{sec_dl()}
+
+## 8. 비교: S&P 1500 유동주 전략 (같은 비용)
 
 {sec_sp1500()}
 
-## 8. 한계와 다음 단계
+## 9. 한계와 다음 단계
 
 - 생존 편향(상장폐지 종목 누락), 프리마켓·뉴스·공시 데이터 부재, float 대신 발행주식수, 15분봉은 60일뿐.
 - 1분·15분봉 1년치가 필요하면 국내 증권사 API(한국투자증권 해외주식 분봉)로 매일 축적하거나 유료 데이터(Polygon 등)를 붙여야 한다. `scripts/fetch_intraday.py` 와 `scripts/intraday_study.py` 는 봉 간격만 바꾸면 그대로 쓸 수 있다.
